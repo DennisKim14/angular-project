@@ -8,6 +8,10 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './service/api.service';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatCardModule} from '@angular/material/card';
+import {MatRadioModule} from "@angular/material/radio";
+import {NgFor} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { ApiService } from './service/api.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule 
+    HttpClientModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatRadioModule,
+    NgFor
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

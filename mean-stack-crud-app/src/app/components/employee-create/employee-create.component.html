@@ -1,84 +1,50 @@
 <div class="row justify-content-center">
     <div class="col-md-4 register-employee">
       <!-- form card register -->
+      <img src="../../../assets/images/banner/chuseok_besong.png" style="width: 620px;"/>
       <div class="card-body">
         <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
           <div class="mb-3">
-            <label for="inputName">Name</label>
+            <label for="inputName">이름</label>
             <input class="form-control" type="text" formControlName="name" />
             <!-- error -->
-            <div
-              class="text-danger"
-              *ngIf="submitted && myForm['name'].errors?.['required']"
-            >
-              Name is required.
-            </div>
+            <div class="text-danger" *ngIf="submitted && myForm['name'].errors?.['required']">이름은 필수항목입니다</div>
           </div>
           <div class="mb-3">
-            <label for="inputEmail3">Email</label>
-            <input class="form-control" type="text" formControlName="email" />
+            <label for="inputEmail3">이메일</label>
+            <input class="form-control" type="text" formControlName="email" placeholder="abcd@gmail.com"/>
             <!-- error -->
-            <div
-              class="text-danger"
-              *ngIf="submitted && myForm['email'].errors?.['required']"
-            >
-              Enter your email.
-            </div>
-            <div
-              class="text-danger"
-              *ngIf="submitted && myForm['email'].errors?.['pattern']"
-            >
-              Enter valid email.
-            </div>
+            <div class="text-danger" *ngIf="submitted && myForm['email'].errors?.['required']">이메일을 입력해주세요</div>
+            <div class="text-danger" *ngIf="submitted && myForm['email'].errors?.['pattern']">이메일 형식에 맞게 입력해주세요</div>
           </div>
           <div class="mb-3">
-            <label for="inputPassword3">Designation</label>
-            <select
-              class="custom-select form-control"
-              (change)="updateProfile($event.target.value)"
-              formControlName="designation"
-            >
-              <option value="">Choose...</option>
-              <option
-                *ngFor="let employeeProfile of EmployeeProfile"
-                value="{{ employeeProfile }}"
-              >
-                {{ employeeProfile }}
-              </option>
+            <label for="inputPassword3">목적</label>
+            <select class="custom-select form-control" (change)="updateProfile($event.target.value)" formControlName="designation">
+              <option value="">선택</option>
+              <option *ngFor="let employeeProfile of EmployeeProfile" value="{{ employeeProfile }}">{{ employeeProfile }}</option>
             </select>
             <!-- error -->
-            <div
-              class="text-danger"
-              *ngIf="submitted && myForm['designation'].errors?.['required']"
-            >
-              Choose designation.
-            </div>
+            <div class="text-danger" *ngIf="submitted && myForm['designation'].errors?.['required']">목적을 선택해주세요</div>
           </div>
           <div class="mb-3">
-            <label for="inputVerify3">Mobile No</label>
-            <input
-              class="form-control"
-              type="text"
-              formControlName="phoneNumber"
-            />
+            <label for="inputVerify3">핸드폰번호</label>
+            <input class="form-control" type="text" formControlName="phoneNumber" placeholder="01000000000"/>
             <!-- error -->
-            <div
-              class="text-danger"
-              *ngIf="submitted && myForm['phoneNumber'].errors?.['required']"
-            >
-              Enter your phone number.
-            </div>
-            <div
-              class="text-danger"
-              *ngIf="submitted && myForm['phoneNumber'].errors?.['pattern']"
-            >
-              Enter Numbers Only
-            </div>
+            <div class="text-danger" *ngIf="submitted && myForm['phoneNumber'].errors?.['required']">핸드폰번호를 입력해주세요</div>
+            <div class="text-danger" *ngIf="submitted && myForm['phoneNumber'].errors?.['pattern']">숫자로만 입력해주세요</div>
           </div>
+          <section class="example-section">
+            <span class="example-list-section">
+              <mat-checkbox class="example-margin" formControlName="agreeAll" (click)="allCheck($event)">전체 동의</mat-checkbox>
+            </span>
+            <span class="example-list-section">
+              <mat-checkbox formControlName="agree1" (click)="checkState()">개인정보 수집/이용 안내</mat-checkbox>
+              <mat-checkbox formControlName="agree2" (click)="checkState()">개인정보 제3자 제공</mat-checkbox>
+              <mat-checkbox formControlName="agree3" (click)="checkState()">회원이용약관</mat-checkbox>
+            </span>
+          </section>
           <div class="d-grid">
-            <button class="btn btn-primary btn-block" type="submit">
-              Register
-            </button>
+            <button class="btn btn-primary btn-block" type="submit">제출</button>
           </div>
         </form>
       </div>
