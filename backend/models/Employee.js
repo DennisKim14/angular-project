@@ -2,7 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // Define collection and schema
 let Employee = new Schema({
+   _id: {
+      type: String
+   },
    name: {
+      type: String
+   },
+   pass: {
       type: String
    },
    email: {
@@ -12,7 +18,7 @@ let Employee = new Schema({
       type: String
    },
    phoneNumber: {
-      type: Number
+      type: String
    }
 }, {
    collection: 'employees'

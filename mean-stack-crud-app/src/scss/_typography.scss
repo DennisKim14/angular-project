@@ -1,0 +1,114 @@
+/* Text styles */
+$typographyBreakPoint: (
+  h1: (
+    family: 'NotoSans_CJK-Regular',
+    size: 30px,
+    weight: normal,
+    height: 52px
+  ),
+  h2: (
+    family: 'NotoSans_CJK-Bold',
+    size: 24px,
+    weight: bold,
+    height: 36px
+  ),
+  h3: (
+    family: 'NotoSans_CJK-Regular',
+    size: 24px,
+    weight: normal,
+    height: 36px
+  ),
+  h4: (
+    family: 'NotoSans_CJK-Bold',
+    size: 18px,
+    weight: bold,
+    height: 30px
+  ),
+  h5: (
+    family: 'NotoSans_CJK-Regular',
+    size: 18px,
+    weight: normal,
+    height: 30px
+  ),
+  subtitle-1: (
+    family: 'NotoSans_CJK-Bold',
+    size: 16px,
+    weight: bold,
+    height: 28px
+  ),
+  subtitle-2: (
+    family: 'NotoSans_CJK-Medium',
+    size: 14px,
+    weight: 500,
+    height: 24px
+  ),
+  subtitle-3: (
+    family: 'NotoSans_CJK-Bold',
+    size: 15px,
+    weight: bold,
+    height: 28px
+  ),
+  subtitle-4: (
+    family: 'NotoSans_CJK-Medium',
+    size: 13px,
+    weight: 500,
+    height: 24px
+  ),
+  body-1: (
+    family: 'NotoSans_CJK-Regular',
+    size: 16px,
+    weight: normal,
+    height: 28px
+  ),
+  body-2: (
+    family: 'NotoSans_CJK-Regular',
+    size: 14px,
+    weight: normal,
+    height: 24px
+  ),
+  body-3: (
+    family: 'NotoSans_CJK-Regular',
+    size: 15px,
+    weight: normal,
+    height: 24px
+  ),
+  body-4: (
+    family: 'NotoSans_CJK-Regular',
+    size: 13px,
+    weight: normal,
+    height: 24px
+  ),
+  caption-1: (
+    family: 'NotoSans_CJK-Bold',
+    size: 12px,
+    weight: bold,
+    height: 20px
+  ),
+  caption-2: (
+    family: 'NotoSans_CJK-Regular',
+    size: 12px,
+    weight: normal,
+    height: 20px
+  ),
+  caption-3: (
+    family: 'NotoSans_CJK-Regular',
+    size: 12px,
+    weight: normal,
+    height: 22px
+  ),
+  overline: (
+    family: 'NotoSans_CJK-Regular',
+    size: 11px,
+    weight: normal,
+    height: 17px
+  )
+);
+
+@mixin font($type) {
+  font-family: map-get(map-get($typographyBreakPoint, $type), family);
+  font-size: map-get(map-get($typographyBreakPoint, $type), size);
+  font-weight: map-get(map-get($typographyBreakPoint, $type), weight);
+  min-height: map-get(map-get($typographyBreakPoint, $type), height);
+  line-height: map-get(map-get($typographyBreakPoint, $type), height);
+}
+

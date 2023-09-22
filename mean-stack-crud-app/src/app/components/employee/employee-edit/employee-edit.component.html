@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-md-4 register-employee">
+      <!-- form card register -->
+      <div class="card card-outline-secondary">
+        <div class="card-header">
+          <h3 class="mb-0">회원정보관리</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="inputName">아이디</label>
+              <input class="form-control" type="text" formControlName="id" />
+              <div class="text-danger" *ngIf="submitted && myForm['id'].errors?.['required']">아이디는 필수항목입니다.</div>
+            </div>
+            <div class="mb-3">
+              <label for="inputName">이름</label>
+              <input class="form-control" type="text" formControlName="name" />
+              <div class="text-danger" *ngIf="submitted && myForm['name'].errors?.['required']">이름은 필수항목입니다.</div>
+            </div>
+            <div class="mb-3">
+              <label for="inputName">비밀번호</label>
+              <input class="form-control" type="text" formControlName="pass" type="password" />
+              <!-- error -->
+              <div class="text-danger" *ngIf="submitted && myForm['pass'].errors?.['required']">비밀번호는 필수항목입니다</div>
+            </div>
+            <div class="mb-3">
+              <label for="inputName">비밀번호 확인</label>
+              <input class="form-control" type="text" formControlName="confirmPass" type="password" />
+              <!-- error -->
+              <div class="text-danger" *ngIf="submitted && myForm['confirmPass'].errors?.['required']">비밀번호 확인은 필수항목입니다</div>
+            </div>
+            <div class="mb-3">
+              <label for="inputEmail3">이메일</label>
+              <input class="form-control" type="text" formControlName="email" />
+              <!-- error -->
+              <div class="text-danger" *ngIf="submitted && myForm['email'].errors?.['required']">이메일을 입력해주세요.</div>
+              <div class="text-danger" *ngIf="submitted && myForm['email'].errors?.['pattern']">올바른 이메일 형식으로 입력해주세요.</div>
+            </div>
+            <div class="mb-3">
+              <label for="inputPassword3">Designation</label>
+              <select class="custom-select form-control" (change)="updateProfile($event.target.value)" formControlName="designation">
+                <option value="">선택</option>
+                <option *ngFor="let employeeProfile of EmployeeProfile" value="{{ employeeProfile }}">{{ employeeProfile }}</option>
+              </select>
+              <!-- error -->
+              <div class="text-danger" *ngIf="submitted && myForm['designation'].errors?.['required']">Choose designation.</div>
+            </div>
+            <div class="mb-3">
+              <label for="inputVerify3">핸드폰번호</label>
+              <input class="form-control" type="text" formControlName="phoneNumber" />
+              <!-- error -->
+              <div class="text-danger" *ngIf="submitted && myForm['phoneNumber'].errors?.['required']">핸드폰번호를 입력해주세요.</div>
+              <div class="text-danger" *ngIf="submitted && myForm['phoneNumber'].errors?.['pattern']">숫자만 입력해주세요</div>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-dark btn-block" type="submit">수정</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- form  -->
+    </div>
+  </div>
+  

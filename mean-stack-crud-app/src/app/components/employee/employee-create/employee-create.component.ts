@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { ApiService } from './../../service/api.service';
+import { ApiService } from './../../../service/api.service';
 import {ThemePalette} from '@angular/material/core';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -23,19 +23,12 @@ export class EmployeeCreateComponent implements OnInit {
     private ngZone: NgZone,
     private apiService: ApiService
   ) {
-    this.mainForm();
-  }
-  ngOnInit() {}
-  mainForm() {
     this.employeeForm = this.fb.group({
+      id: ['', [Validators.required]],
       name: ['', [Validators.required]],
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
-        ],
-      ],
+      pass: ['', [Validators.required]],
+      confirmPass: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')]],
       designation: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       agree1: ['', []],
@@ -44,27 +37,41 @@ export class EmployeeCreateComponent implements OnInit {
       agreeAll: ['', []]
     });
   }
+
+  ngOnInit() {}
+
   // Choose designation with select dropdown
   updateProfile(e) {
     this.employeeForm.get('designation').setValue(e, {
       onlySelf: true,
     });
   }
+
   // Getter to access form control
   get myForm() {
     return this.employeeForm.controls;
   }
+
   onSubmit() {
     this.submitted = true;
     if (!this.employeeForm.valid) {
       return false;
-    } else if (!this.employeeForm.getRawValue().agreeAll) {
-      alert('약관동의를 해주세요!');
+    } else if (this.employeeForm.getRawValue().pass !== this.employeeForm.getRawValue().confirmPass) {
+      alert('비밀번호를 확인해주세요!');
       return false;
     } else {
-      return this.apiService.createEmployee(this.employeeForm.value).subscribe({
+      const _  = this.employeeForm.getRawValue();
+      const data = {
+        id: _.id,
+        name: _.name,
+        pass: _.pass,
+        email: _.email,
+        designation: _.designation,
+        phoneNumber: _.phoneNumber
+      }
+
+      return this.apiService.createEmployee(data).subscribe({
         complete: () => {
-          console.log('Employee successfully created!'),
             this.ngZone.run(() => this.router.navigateByUrl('/employees-list'));
         },
         error: (e) => {

@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
@@ -45,6 +41,10 @@ export class ApiService {
     return this.http
       .delete(url, { headers: this.headers })
       .pipe(catchError(this.errorMgmt));
+  }
+  login(data): Observable<any> {
+    let url = `${this.baseUri}/login`;
+    return this.http.post(url, data).pipe(catchError(this.errorMgmt));
   }
   // Error handling
   errorMgmt(error: HttpErrorResponse) {

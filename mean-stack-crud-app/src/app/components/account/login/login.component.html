@@ -1,0 +1,25 @@
+<div class="row justify-content-center">
+    <div class="col-md-4 login">
+      <!-- form card register -->
+      <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="inputName">아이디</label>
+            <input class="form-control" type="text" formControlName="id" />
+            <!-- error -->
+            <div class="text-danger" *ngIf="submitted && myForm['id'].errors?.['required']">아이디는 필수항목입니다</div>
+          </div>
+          <div class="mb-3">
+            <label for="inputName">비밀번호</label>
+            <input class="form-control" type="text" formControlName="pass" />
+            <!-- error -->
+            <div class="text-danger" *ngIf="submitted && myForm['pass'].errors?.['required']">비밀번호는 필수항목입니다</div>
+          </div>
+          <div class="d-grid">
+            <button class="btn btn-primary btn-block" type="submit">로그인</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- form card register -->
+</div>
