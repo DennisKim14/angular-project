@@ -1,4 +1,5 @@
-const Employee = require('../models/Employee');
+const Employee = require('../models/Employee')
+    , Response = require('../core/Response');
 
 module.exports = {
     
@@ -15,7 +16,7 @@ module.exports = {
                 if (user) {
                     resolve(user);
                 } else {
-                    throw Error('사용자 정보를 찾을 수 없습니다.');
+                    throw Response.get(Response.type.FAILED, undefined, '사용자 정보를 찾을 수 없습니다.');
                 }
             } catch (err) {
                 reject(err);

@@ -6,8 +6,11 @@
     <button class="btn btn-sm btn-outline-secondary me-2" type="button" routerLinkActive="active" routerLink="/create-employee">
       회원가입
     </button>
-    <button class="btn btn-sm btn-outline-primary" type="button" routerLinkActive="active" routerLink="/login">
+    <button *ngIf="isLogin == false" class="btn btn-sm btn-outline-primary" type="button" routerLinkActive="active" routerLink="/login">
       로그인
+    </button>
+    <button *ngIf="isLogin == true" class="btn btn-sm btn-outline-primary" type="button" routerLinkActive="active" (click)="logout()">
+      로그아웃
     </button>
   </form>
 </nav>

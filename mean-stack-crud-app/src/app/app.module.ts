@@ -17,6 +17,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgFor} from '@angular/common';
 import { JoinComponent } from './components/account/join/join.component';
 import { LoginComponent } from './components/account/login/login.component';
+import { HeaderComponent } from './components/basic/header/header.component';
+import { FooterComponent } from './components/basic/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { LoginComponent } from './components/account/login/login.component';
     EmployeeEditComponent,
     EmployeeListComponent,
     JoinComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

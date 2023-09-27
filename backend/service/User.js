@@ -15,7 +15,7 @@ module.exports = {
                 if (user) {
                     resolve(user);
                 } else {
-                    throw Error('사용자 정보를 찾을 수 없습니다.');
+                    throw '사용자 정보를 찾을 수 없습니다.';
                 }
             } catch (err) {
                 reject(err);

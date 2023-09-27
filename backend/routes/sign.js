@@ -13,8 +13,9 @@ Router.post(
     '/login', 
     (req, res, next) => {
         Ctrl.login(req.body.id, req.body.pass).then(data => { 
-            res.json(data)
+            res.json(data);
         }).catch(err => {
+            res.json(err);
             next(err);
         })
 });

@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
+import { SessionService } from 'src/app/service/session.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private sessionService: SessionService
   ) {
     this.loginForm = this.formBuilder.group({
       id: ['', [Validators.required]],
@@ -34,14 +36,25 @@ export class LoginComponent {
     if (!this.loginForm.valid) {
       return false;
     } else {
-      return this.apiService.login(this.loginForm.value).subscribe({
-        complete: () => {
-            this.ngZone.run(() => this.router.navigateByUrl('/employees-list'));
-        },
-        error: (e) => {
-          console.log(e);
-        },
-      });
+      return this.apiService.login(this.loginForm.value).subscribe(res => {
+        if (res.code === 200) {
+          alert('로그인 성공');
+          this.sessionService.setItem(this.loginForm.getRawValue().id);
+          this.ngZone.run(() => this.router.navigateByUrl('/employees-list'));
+        } else if (res.code === 0) {
+          alert(res.msg);
+        }
+      }
+      // {
+      //   complete: () => {
+      //       localStorage.setItem('id', this.loginForm.getRawValue().id);
+      //       this.ngZone.run(() => this.router.navigateByUrl('/employees-list'));
+      //   },
+      //   error: (e) => {
+      //     alert(e);
+      //   },
+      // }
+      );
     }
   }
 

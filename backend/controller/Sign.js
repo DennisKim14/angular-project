@@ -1,4 +1,5 @@
-const Employee = require('../service/employee');
+const Employee = require('../service/employee')
+    , Response = require('../core/Response');
 
 module.exports = {
     
@@ -17,14 +18,10 @@ module.exports = {
         return new Promise(async (resolve, reject) =>{
             try {
                 const employee = await Employee.view(id);
-                if (employee) {
-                    if (pass == employee.pass) {
-                        resolve();
-                    } else {
-                        throw Error('비밀번호가 일치하지 않습니다.')
-                    }
+                if (pass == employee.pass) {
+                    resolve({code: 200});
                 } else {
-                    throw Error('존재하지 않는 회원입니다.')
+                    throw Response.get(Response.type.FAILED, undefined, '비밀번호가 일치하지 않습니다.');
                 }
             } catch (error) {
                 reject(error);
