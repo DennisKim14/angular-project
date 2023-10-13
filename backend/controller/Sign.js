@@ -19,7 +19,8 @@ module.exports = {
             try {
                 const employee = await Employee.view(id);
                 if (pass == employee.pass) {
-                    resolve({code: 200});
+                    resolve(Response.type.SUCCESS);
+                    // throw Response.get(Response.type.SUCCESS, undefined, '로그인 성공');
                 } else {
                     throw Response.get(Response.type.FAILED, undefined, '비밀번호가 일치하지 않습니다.');
                 }

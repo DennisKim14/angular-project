@@ -1,8 +1,9 @@
 import { Component, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/service/api.service';
-import { SessionService } from 'src/app/service/session.service';
+import { ApiService } from 'src/app/core/service/api.service';
+import { SessionService } from 'src/app/core/service/session.service';
+import { RESPONSE_CODE } from 'src/app/core/service/response.service';
 
 @Component({
   selector: 'app-login',
@@ -37,10 +38,10 @@ export class LoginComponent {
       return false;
     } else {
       return this.apiService.login(this.loginForm.value).subscribe(res => {
-        if (res.code === 200) {
+        if (res.code === RESPONSE_CODE.SUCCESS) {
           alert('로그인 성공');
           this.sessionService.setItem(this.loginForm.getRawValue().id);
-          this.ngZone.run(() => this.router.navigateByUrl('/employees-list'));
+          this.ngZone.run(() => this.router.navigateByUrl('/employee/employees-list'));
         } else if (res.code === 0) {
           alert(res.msg);
         }

@@ -1,17 +1,1 @@
-<nav class="navbar bg-body-tertiary mb-5">
-  <form class="container-fluid justify-content-center">
-    <button class="btn btn-sm btn-outline-success me-2" type="button" routerLinkActive="active" routerLink="/employees-list">
-      회원리스트
-    </button>
-    <button class="btn btn-sm btn-outline-secondary me-2" type="button" routerLinkActive="active" routerLink="/create-employee">
-      회원가입
-    </button>
-    <button *ngIf="isLogin == false" class="btn btn-sm btn-outline-primary" type="button" routerLinkActive="active" routerLink="/login">
-      로그인
-    </button>
-    <button *ngIf="isLogin == true" class="btn btn-sm btn-outline-primary" type="button" routerLinkActive="active" (click)="logout()">
-      로그아웃
-    </button>
-  </form>
-</nav>
 <router-outlet></router-outlet>
